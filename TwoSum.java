@@ -27,29 +27,14 @@ Only one valid answer exists.
 */
 
 class Solution {
-    private int[] binarySearch(int[] array, int currentIndex, int low, int high, int target) {
-        while(low <= high) {
-            int mid = low + (high- low) /2;
-            int[] toReturn = new int[2];
-            
-            if(array[currentIndex] + array[mid] == target) {
-                toReturn[0] = currentIndex;
-                toReturn[1] = mid;
-                return toReturn;
-            } else if (array[currentIndex] + array[mid] < target) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-        return null;
-    }
     public int[] twoSum(int[] nums, int target) {
-        int[] toReturn;
-        toReturn = new int[2];
         for(int i = 0; i < nums.length-1; i++) {
-            toReturn = binarySearch(nums, i, i+1, nums.length-1, target);
-            if(toReturn != null) return toReturn;
+            for(int j = i + 1; j < nums.length; j++) {
+                if(nums[i] + nums[j] == target) {
+                    int[] answer = {i, j};
+                    return answer;
+                }
+            }
         }
         return null;
     }
